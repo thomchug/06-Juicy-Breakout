@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Paddle.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Scripts/Score.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Lives.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/Starting.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Battle in the Stars.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Assets/Various-13.wav" type="AudioStream" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 72, 16 )
@@ -29,9 +31,15 @@ margin_left = -72.0
 margin_top = -16.0
 margin_right = 72.0
 margin_bottom = 16.0
+color = Color( 0.878431, 0.0431373, 0.141176, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle"]
 shape = SubResource( 1 )
+
+[node name="Tween" type="Tween" parent="Paddle"]
 
 [node name="Wall" type="StaticBody2D" parent="."]
 
@@ -216,13 +224,33 @@ margin_bottom = 30.0
 text = "Lives:"
 script = ExtResource( 5 )
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_top = -57.0
+margin_right = 1092.0
+margin_bottom = 604.0
+color = Color( 0.760784, 0.0313726, 0.937255, 0.0901961 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Starting" type="Label" parent="."]
 margin_right = 1024.0
 margin_bottom = 112.0
 align = 1
 valign = 1
 script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Timer" type="Timer" parent="Starting"]
 wait_time = 10.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+autoplay = true
+
+[node name="Slap" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+attenuation = 0.233258
 [connection signal="timeout" from="Starting/Timer" to="Starting" method="_on_Timer_timeout"]
