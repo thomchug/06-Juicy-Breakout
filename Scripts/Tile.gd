@@ -10,5 +10,5 @@ func _ready():
 	i.set_wait_time(tick)
 	i.start()
 	yield(i, "timeout")
-	$Tween.interpolate_property(self, "position", position, target, 3.0, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
+	$Tween.interpolate_property(self, "position", position, target, 2.0, Tween.TRANS_BOUNCE, Tween.EASE_OUT)
 	$Tween.start()

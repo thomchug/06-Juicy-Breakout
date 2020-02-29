@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 onready var Game = get_node("/root/Game")
+onready var Camera = get_node("/root/Game/Camera")
 onready var Starting = get_node("/root/Game/Starting")
 
 onready var Slap = get_node("/root/Game/Slap")
@@ -38,6 +39,7 @@ func _physics_process(delta):
 	# Check for collisions
 	var bodies = get_colliding_bodies()
 	for body in bodies:
+		Camera._add_trauma(0.3)
 		_add_trauma(2.0)
 		if body.is_in_group("Tiles"):
 			Game.change_score(body.points)
